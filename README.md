@@ -44,3 +44,7 @@ store/gameSlice - store all game related data, e.g. score
 store/nftSlice - store all nft related data, e.g. token ID
 store/userSlice - store all user related data, e.g. wallet address
 ```
+
+### References
+
+Source code is referenced and modified from [here](https://www.freecodecamp.org/news/build-a-snake-game-with-react-redux-and-redux-sagas/)
