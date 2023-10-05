@@ -1,0 +1,12 @@
+{
+  "name": "Garden Snake",
+  "description": "About 2,900 snake species are known to exist, most living in the tropics. Their skin is covered with scales. They have good eyesight, and they continually taste the surrounding air with their tongues.",
+  "image": null,
+  "external_url": "",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "common"
+    }
+  ]
+}

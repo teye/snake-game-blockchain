@@ -1,38 +1,103 @@
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 1em;
+  padding: 1.25em;
 }
 
-.App-link {
-  color: #61dafb;
+.canvasWrapper {
+  border: 2px solid #b0bec5;
+  border-radius: 10px;
+  background-color: #37474f;
+  opacity: 0.8;
+  background-image: linear-gradient(#455a64 1px, transparent 1px), linear-gradient(to right, #455a64 1px, #37474f 1px);
+  background-size: 20px 20px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.canvasWrapperGameEnd {
+  border: 2px solid #ff5252;
+  border-radius: 10px;
+  background-color: #37474f;
+  opacity: 0.8;
+  background-image: linear-gradient(#455a64 1px, transparent 1px), linear-gradient(to right, #455a64 1px, #37474f 1px);
+  background-size: 20px 20px;
+}
+
+.mainBoardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.mainCanvasWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+}
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1em;
+  border: 2px solid #42a5f5;
+  border-radius: 8px;
+  padding: 1.5em;
+  width: 600px;
+  line-height: 1.5em;
+}
+
+.menu-title {
+  font-size: 2em;
+  font-weight: bold;
+  color: #90caf9;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-self: stretch;
+  align-items: center;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  padding-left: 0.2em;
+  padding-right: 0.2em;
+
+  font-size: 1.2em;
+}
+
+.scoreWrapper {
+  font-size: 2em;
+  font-weight: 500;
+}
+
+.contentWrapper {
+  display: flex;
+  align-items: stretch;
+  gap: 1em;
+}
+
+.rankingBoardWrapper {
+  display: flex;
+  flex-direction: column;
+  align-self: stretch;
+  border: 1px solid #42a5f5;
+  border-radius: 8px;
+  padding: 1.5em;
+  line-height: 1.5em;
+
+  font-weight: 700;
+  color: #1e88e5;
+}
+
+.rankingContentWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  font-weight: 400;
+  color: #18191a;
 }

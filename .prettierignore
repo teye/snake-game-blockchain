@@ -1,0 +1,14 @@
+/coverage
+/dist
+/out
+/node_modules
+/package-lock.json
+.next
+/docs
+.prettierrc.json
+.gitignore
+.husky
+package.json
+tsconfig.json
+public
+public/*

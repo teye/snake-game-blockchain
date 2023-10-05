@@ -1,0 +1,12 @@
+{
+  "name": "King Cobra",
+  "description": "Cobras are some of the most recognizable snakes in the world. They have muscles around the head and neck that can flatten out into a hood shape, making them appear larger to potential predators.",
+  "image": null,
+  "external_url": "",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "rare"
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Viper",
+  "description": "The quintessential venomous snakes, vipers are a diverse family with members all over the world. Vipers can often be identified by their distinctive triangular heads (other snakes have a more oval or elongated head).",
+  "image": null,
+  "external_url": "",
+  "attributes": [
+    {
+      "trait_type": "Rarity",
+      "value": "uncommon"
+    }
+  ]
+}
