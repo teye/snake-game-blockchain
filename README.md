@@ -1,46 +1,45 @@
-# Getting Started with Create React App
+# Snake Game Blockchain
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a poc snake game that features NFT and leaderboard stored on Automata Testnet.
 
-## Available Scripts
+### Instructions
 
-In the project directory, you can run:
+The game requires you to own a Snake NFT. Instructions are found within the game UI.
 
-### `npm start`
+You would also need Sepolia ETH.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Project Info
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+NFT metadata are uploaded on [IPFS](https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/)
+NFT Contract: [0x27a9dE3e73dfe6F3dA833184Ed44E16b43985ccd](https://explorer.ata.network/address/0x27a9dE3e73dfe6F3dA833184Ed44E16b43985ccd)
+Leaderboard Contract: [0x6d4Ab47f3d5a1f1A4347ef7ebf471cb5b39a3722](https://explorer.ata.network/address/0x6d4Ab47f3d5a1f1A4347ef7ebf471cb5b39a3722)
 
-### `npm test`
+### Development
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Deploy NFT contract
+2. Deploy Leaderboard contract
 
-### `npm run build`
+3. Create a `.env` with these variables:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+REACT_APP_LEADERBOARD_PK=<private_key in Step 2>
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+This private key is required for the frontend to update the score on behalf of the user.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Run `npm start`
 
-### `npm run eject`
+### Project Structure
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+`abis` - contract ABI
+`components/canvasboard` - main snake game UI
+`components/ranking` - leaderboard UI
+`components/score` - score and wallet display
+`contracts` - NFT and leaderboard contract
+`metadata` - NFT metadata for each of the snake
+`store/sagas` - background event monitoring plugins to move snake and update score
+`store/blockchainSlice` - used to trigger event to saga
+`store/gameSlice` - store all game related data, e.g. score
+`store/nftSlice` - store all nft related data, e.g. token ID
+`store/userSlice` - store all user related data, e.g. wallet address
+``
