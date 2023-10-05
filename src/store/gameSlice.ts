@@ -60,7 +60,7 @@ export const gameSlice = createSlice({
       state.score = 0;
     },
     INCREMENT_SCORE: (state) => {
-      state.score = state.score + 2;
+      state.score = state.score + 1;
     },
     STOP_GAME() {},
     RESET_GAME() {},
