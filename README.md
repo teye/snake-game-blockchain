@@ -12,7 +12,7 @@ You would also need Sepolia ETH.
 
 NFT metadata are uploaded on [IPFS](https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/)
 NFT Contract: [0x27a9dE3e73dfe6F3dA833184Ed44E16b43985ccd](https://explorer.ata.network/address/0x27a9dE3e73dfe6F3dA833184Ed44E16b43985ccd)
-Leaderboard Contract: [0x6d4Ab47f3d5a1f1A4347ef7ebf471cb5b39a3722](https://explorer.ata.network/address/0x6d4Ab47f3d5a1f1A4347ef7ebf471cb5b39a3722)
+Leaderboard Contract: [0x2f65d1142fB7577D8DE00fDA4De4a6A33e6CdD56](https://explorer.ata.network/address/0x2f65d1142fB7577D8DE00fDA4De4a6A33e6CdD56)
 
 ### Development
 

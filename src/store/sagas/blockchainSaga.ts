@@ -13,9 +13,8 @@ async function invokeContract(wallet: string, score: number) {
   const tx = await scoreboardContract.addScore(`${wallet}`, `${score}`);
   const txReceipt = await tx.wait();
 
-  console.log('updating score: ', tx);
   if (txReceipt && txReceipt.status === 1) {
-    console.log('score updated: ', txReceipt);
+    console.log('score updated: ', tx);
   }
 }
 
@@ -24,7 +23,6 @@ async function invokeContract(wallet: string, score: number) {
  */
 function* submitHighScore(action: any) {
   console.log('submit high score');
-  console.log('action: ', action);
   // submit highscore using deployer wallet
   const deployerKey = process.env.REACT_APP_LEADERBOARD_PK || '';
   const { wallet, score } = action.payload;

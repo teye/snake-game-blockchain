@@ -51,6 +51,7 @@ function RankingBoard() {
         <p>Loading...</p>
       ) : data ? (
         <div className="rankingContentWrapper">
+          {data.length === 0 && <div>No highscores.</div>}
           {data.map((player, index) => {
             return (
               <div key={index}>
