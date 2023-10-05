@@ -22,7 +22,7 @@ Leaderboard Contract: [0x6d4Ab47f3d5a1f1A4347ef7ebf471cb5b39a3722](https://explo
 3. Create a `.env` with these variables:
 
 ```
-REACT_APP_LEADERBOARD_PK=<private_key in Step 2>
+REACT_APP_LEADERBOARD_PK=<private_key used to deploy leaderboard contract in Step 2>
 ```
 
 This private key is required for the frontend to update the score on behalf of the user.
@@ -31,15 +31,16 @@ This private key is required for the frontend to update the score on behalf of t
 
 ### Project Structure
 
-`abis` - contract ABI
-`components/canvasboard` - main snake game UI
-`components/ranking` - leaderboard UI
-`components/score` - score and wallet display
-`contracts` - NFT and leaderboard contract
-`metadata` - NFT metadata for each of the snake
-`store/sagas` - background event monitoring plugins to move snake and update score
-`store/blockchainSlice` - used to trigger event to saga
-`store/gameSlice` - store all game related data, e.g. score
-`store/nftSlice` - store all nft related data, e.g. token ID
-`store/userSlice` - store all user related data, e.g. wallet address
-``
+```
+abis - contract ABI
+components/canvasboard - main snake game UI
+components/ranking - leaderboard UI
+components/score - score and wallet display
+contracts - NFT and leaderboard contract
+metadata - NFT metadata for each of the snake
+store/sagas - background event monitoring plugins to move snake and update score
+store/blockchainSlice - used to trigger event to saga
+store/gameSlice - store all game related data, e.g. score
+store/nftSlice - store all nft related data, e.g. token ID
+store/userSlice - store all user related data, e.g. wallet address
+```
