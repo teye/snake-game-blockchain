@@ -11,15 +11,15 @@
   border-radius: 10px;
   background-color: #37474f;
   opacity: 0.9;
-  background-image: linear-gradient(to bottom, transparent 50%, #484d51 50%),
-    linear-gradient(to right, #4e5256 50%, #484d51 50%);
+  background-image: linear-gradient(to bottom, transparent 50%, #583c87 50%),
+    linear-gradient(to right, #5e428e 50%, #583c87 50%);
   background-size:
     36px 36px,
     36px 36px;
 }
 
 .canvasWrapperGameEnd {
-  border: 2px solid #ff5252;
+  border: 2px solid #f06868;
   border-radius: 10px;
   background-color: #37474f;
   opacity: 0.9;
@@ -67,15 +67,18 @@
   align-items: center;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  padding-left: 0.2em;
-  padding-right: 0.2em;
+  padding-left: 1em;
+  padding-right: 1em;
 
   font-size: 1.2em;
+  border-radius: 8px;
+  color: #fff;
+  background-color: #ffaf4f;
 }
 
 .scoreWrapper {
   font-size: 2em;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 .contentWrapper {
