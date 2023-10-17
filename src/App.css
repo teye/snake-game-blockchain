@@ -10,18 +10,22 @@
   border: 2px solid #b0bec5;
   border-radius: 10px;
   background-color: #37474f;
-  opacity: 0.8;
-  background-image: linear-gradient(#455a64 1px, transparent 1px), linear-gradient(to right, #455a64 1px, #37474f 1px);
-  background-size: 20px 20px;
+  opacity: 0.9;
+  background-image: linear-gradient(to bottom, transparent 50%, #484d51 50%),
+    linear-gradient(to right, #4e5256 50%, #484d51 50%);
+  background-size:
+    36px 36px,
+    36px 36px;
 }
 
 .canvasWrapperGameEnd {
   border: 2px solid #ff5252;
   border-radius: 10px;
   background-color: #37474f;
-  opacity: 0.8;
-  background-image: linear-gradient(#455a64 1px, transparent 1px), linear-gradient(to right, #455a64 1px, #37474f 1px);
-  background-size: 20px 20px;
+  opacity: 0.9;
+  background-image: linear-gradient(to bottom, transparent 50%, #484d51 50%),
+    linear-gradient(to right, #4e5256 50%, #484d51 50%);
+  background-size: 36px 36px;
 }
 
 .mainBoardWrapper {
