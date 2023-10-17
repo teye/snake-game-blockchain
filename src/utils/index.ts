@@ -41,7 +41,8 @@ export const drawSnake = (
       context.fillStyle = fillColor;
       context.strokeStyle = fillColor;
       context.beginPath();
-      context.arc(object.x, object.y, 10, 0, 2 * Math.PI);
+
+      context.arc(object.x, object.y, 9, 0, 2 * Math.PI);
       context.shadowBlur = 10;
       context.shadowColor = glowColor;
       context.fill();
