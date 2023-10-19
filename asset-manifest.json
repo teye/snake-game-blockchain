@@ -1,15 +1,15 @@
 {
-  "main.css": "/snake-game-blockchain/static/css/main.fbb8b3a5.chunk.css",
-  "main.js": "/snake-game-blockchain/static/js/main.f8e0eba3.chunk.js",
-  "main.js.map": "/snake-game-blockchain/static/js/main.f8e0eba3.chunk.js.map",
+  "main.css": "/snake-game-blockchain/static/css/main.d26fad76.chunk.css",
+  "main.js": "/snake-game-blockchain/static/js/main.66431b40.chunk.js",
+  "main.js.map": "/snake-game-blockchain/static/js/main.66431b40.chunk.js.map",
   "runtime~main.js": "/snake-game-blockchain/static/js/runtime~main.9d9cffe5.js",
   "runtime~main.js.map": "/snake-game-blockchain/static/js/runtime~main.9d9cffe5.js.map",
-  "static/js/2.97329b2b.chunk.js": "/snake-game-blockchain/static/js/2.97329b2b.chunk.js",
-  "static/js/2.97329b2b.chunk.js.map": "/snake-game-blockchain/static/js/2.97329b2b.chunk.js.map",
+  "static/js/2.3d025d30.chunk.js": "/snake-game-blockchain/static/js/2.3d025d30.chunk.js",
+  "static/js/2.3d025d30.chunk.js.map": "/snake-game-blockchain/static/js/2.3d025d30.chunk.js.map",
   "static/js/3.71c27850.chunk.js": "/snake-game-blockchain/static/js/3.71c27850.chunk.js",
   "static/js/3.71c27850.chunk.js.map": "/snake-game-blockchain/static/js/3.71c27850.chunk.js.map",
   "index.html": "/snake-game-blockchain/index.html",
-  "precache-manifest.f76b12bca21f02a7bc334a4fec7bbebe.js": "/snake-game-blockchain/precache-manifest.f76b12bca21f02a7bc334a4fec7bbebe.js",
+  "precache-manifest.5e8f1144417ef1d34543f6e96851b063.js": "/snake-game-blockchain/precache-manifest.5e8f1144417ef1d34543f6e96851b063.js",
   "service-worker.js": "/snake-game-blockchain/service-worker.js",
-  "static/css/main.fbb8b3a5.chunk.css.map": "/snake-game-blockchain/static/css/main.fbb8b3a5.chunk.css.map"
+  "static/css/main.d26fad76.chunk.css.map": "/snake-game-blockchain/static/css/main.d26fad76.chunk.css.map"
 }
