@@ -60,6 +60,7 @@ export const gameSlice = createSlice({
       state.snake = [...initialState.snake];
       state.disallowedDirection = initialState.disallowedDirection;
       state.score = initialState.score;
+      state.level = initialState.level;
     },
     RESET_SCORE: (state) => {
       state.score = 0;

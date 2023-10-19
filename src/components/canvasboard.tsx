@@ -1,10 +1,9 @@
 import 'dotenv/config';
-import Button from '@mui/material/Button';
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import '../App.css';
 import { DOWN, LEFT, RIGHT, UP } from '../store/actions';
-import { useAppDispatch, useAppSelector } from '../store/hooks';
+import { useAppSelector } from '../store/hooks';
 import { ObjectBody } from '../types';
 import {
   clearBoard,
@@ -110,10 +109,10 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
     (event: KeyboardEvent) => {
       switch (event.key) {
         case 'w':
-          moveSnake(0, -20, disallowedDirection, level);
+          !gameEnded && moveSnake(0, -20, disallowedDirection, level);
           break;
         case 's':
-          moveSnake(0, 20, disallowedDirection, level);
+          !gameEnded && moveSnake(0, 20, disallowedDirection, level);
           break;
         case 'a':
           if (!disallowedDirection) {
@@ -122,14 +121,14 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
             event.preventDefault();
             break;
           }
-          moveSnake(-20, 0, disallowedDirection, level);
+          !gameEnded && moveSnake(-20, 0, disallowedDirection, level);
           break;
         case 'd':
-          moveSnake(20, 0, disallowedDirection, level);
+          !gameEnded && moveSnake(20, 0, disallowedDirection, level);
           break;
       }
     },
-    [disallowedDirection, level, moveSnake],
+    [disallowedDirection, level, gameEnded, moveSnake],
   );
 
   const isOutOfBoundary = (snake: any) => {
@@ -184,30 +183,38 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
     }
   }, [playerSnake, dispatch, handleKeyEvents]);
 
-  const resetBoard = useCallback(() => {
-    window.removeEventListener('keypress', handleKeyEvents);
+  const handleResetBoard = useCallback(
+    (event: KeyboardEvent) => {
+      switch (event.key) {
+        case 'r':
+          // resetBoard;
+          setGameEnded(false);
+          dispatch(RESET_GAME());
+          dispatch(RESET_GAME_STATE());
+          clearBoard(context);
 
-    setGameEnded(false);
-    dispatch(RESET_GAME());
-    dispatch(RESET_GAME_STATE());
-    clearBoard(context);
+          // render snake
+          playerSnake && drawSnake(context, playerSnake, snakeColor, snakeGlowColor);
 
-    // render snake
-    playerSnake && drawSnake(context, playerSnake, snakeColor, snakeGlowColor);
-
-    // render food
-    const newFoodPosition = generateRandomPosition(width - GAME_CHAR_PIXEL_WIDTH, height - GAME_CHAR_PIXEL_HEIGHT);
-    setFoodPosition(newFoodPosition);
-
-    window.addEventListener('keypress', handleKeyEvents);
-  }, [context, dispatch, handleKeyEvents, height, width, playerSnake]);
+          // render food
+          const newFoodPosition = generateRandomPosition(
+            width - GAME_CHAR_PIXEL_WIDTH,
+            height - GAME_CHAR_PIXEL_HEIGHT,
+          );
+          setFoodPosition(newFoodPosition);
+      }
+    },
+    [context, dispatch, height, width, playerSnake],
+  );
 
   useEffect(() => {
     // key input
     window.addEventListener('keypress', handleKeyEvents);
+    window.addEventListener('keypress', handleResetBoard);
 
     return () => {
       window.removeEventListener('keypress', handleKeyEvents);
+      window.removeEventListener('keypress', handleResetBoard);
     };
   }, [disallowedDirection, handleKeyEvents]);
 
@@ -230,11 +237,8 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
         height={height}
         width={width}
       />
-      <div>W,S,A,D to move</div>
+      <div>Controls: W,S,A,D to move - R to reset</div>
       {gameEnded && <div color="red">Game Over</div>}
-      <Button variant="outlined" color="error" onClick={resetBoard}>
-        Reset Game
-      </Button>
     </div>
   );
 }
