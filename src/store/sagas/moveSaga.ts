@@ -15,6 +15,7 @@ import {
 export function* moveSaga(actions: any) {
   // keep looping to move the snake
   while (actions.type !== RESET_GAME.toString() && actions.type !== STOP_GAME.toString()) {
+    console.log('move saga: ', actions);
     // run the snake
     yield put(
       MOVE_SNAKE({
@@ -39,7 +40,28 @@ export function* moveSaga(actions: any) {
         yield put(SET_DIS_DIRECTION(UP));
         break;
     }
-    yield delay(100);
+
+    let gameSpeed = 100; // lower number = faster
+    console.log(actions.payload.level);
+    if (actions.payload.level) {
+      const level = actions.payload.level;
+      if (level === 1) {
+        gameSpeed = 100;
+      } else if (level === 2) {
+        gameSpeed = 90;
+      } else if (level === 3) {
+        gameSpeed = 80;
+      } else if (level === 4) {
+        gameSpeed = 70;
+      } else if (level === 5) {
+        gameSpeed = 60;
+      } else if (level > 5) {
+        gameSpeed = 50;
+      } else if (level > 9) {
+        gameSpeed = 40;
+      }
+    }
+    yield delay(gameSpeed);
   }
 }
 

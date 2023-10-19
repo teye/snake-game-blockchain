@@ -15,6 +15,7 @@ const initialState = {
   ],
   disallowedDirection: '',
   score: 0,
+  level: 1, // higher level = higher snake speed, see moveSaga.ts
 };
 
 export const gameSlice = createSlice({
@@ -40,6 +41,7 @@ export const gameSlice = createSlice({
       state.disallowedDirection = action.payload;
     },
     INCREASE_SNAKE: (state) => {
+      console.log('increase snake');
       // append a segment to the end of the snake
       const snakeLen = state.snake.length;
 
@@ -51,6 +53,9 @@ export const gameSlice = createSlice({
         },
       ];
     },
+    LEVEL_UP: (state) => {
+      state.level = state.level + 1;
+    },
     RESET_GAME_STATE: (state) => {
       state.snake = [...initialState.snake];
       state.disallowedDirection = initialState.disallowedDirection;
@@ -60,7 +65,12 @@ export const gameSlice = createSlice({
       state.score = 0;
     },
     INCREMENT_SCORE: (state) => {
-      state.score = state.score + 1;
+      state.score = state.score + 2;
+
+      if (state.score % 20 === 0) {
+        // every X points increase level
+        state.level = state.level + 1;
+      }
     },
     STOP_GAME() {},
     RESET_GAME() {},

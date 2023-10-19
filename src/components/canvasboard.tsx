@@ -39,6 +39,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
   const dispatch = useDispatch();
   const score = useAppSelector((state: any) => state.game.score);
   const playerSnake = useAppSelector((state: any) => state.game.snake);
+  const level = useAppSelector((state: any) => state.game.level);
   const userState = useAppSelector((state: any) => state.user);
   const nftState = useAppSelector((state: any) => state.nft);
   const disallowedDirection = useAppSelector((state: any) => state.game.disallowedDirection);
@@ -57,13 +58,14 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
 
   // ds = direction not allowed
   const moveSnake = useCallback(
-    (dx = 0, dy = 0, ds: string) => {
+    (dx = 0, dy = 0, ds: string, dlevel: number) => {
       if (dx > 0 && dy === 0 && ds !== RIGHT) {
         dispatch(
           MOVE_SNAKE_EVENT({
             x: dx,
             y: dy,
             direction: MOVE_RIGHT_EVENT,
+            level: dlevel,
           }),
         );
       }
@@ -74,6 +76,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
             x: dx,
             y: dy,
             direction: MOVE_LEFT_EVENT,
+            level: dlevel,
           }),
         );
       }
@@ -84,6 +87,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
             x: dx,
             y: dy,
             direction: MOVE_UP_EVENT,
+            level: dlevel,
           }),
         );
       }
@@ -94,6 +98,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
             x: dx,
             y: dy,
             direction: MOVE_DOWN_EVENT,
+            level: dlevel,
           }),
         );
       }
@@ -105,10 +110,10 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
     (event: KeyboardEvent) => {
       switch (event.key) {
         case 'w':
-          moveSnake(0, -20, disallowedDirection);
+          moveSnake(0, -20, disallowedDirection, level);
           break;
         case 's':
-          moveSnake(0, 20, disallowedDirection);
+          moveSnake(0, 20, disallowedDirection, level);
           break;
         case 'a':
           if (!disallowedDirection) {
@@ -117,14 +122,14 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
             event.preventDefault();
             break;
           }
-          moveSnake(-20, 0, disallowedDirection);
+          moveSnake(-20, 0, disallowedDirection, level);
           break;
         case 'd':
-          moveSnake(20, 0, disallowedDirection);
+          moveSnake(20, 0, disallowedDirection, level);
           break;
       }
     },
-    [disallowedDirection, moveSnake],
+    [disallowedDirection, level, moveSnake],
   );
 
   const isOutOfBoundary = (snake: any) => {
@@ -133,14 +138,15 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
 
   useEffect(() => {
     // snake eat the food
-    if (isConsumed) {
-      const newFoodPosition = generateRandomPosition(width - GAME_CHAR_PIXEL_WIDTH, height - GAME_CHAR_PIXEL_HEIGHT);
+    const newFoodPosition = generateRandomPosition(width - GAME_CHAR_PIXEL_WIDTH, height - GAME_CHAR_PIXEL_HEIGHT);
+
+    if (isConsumed && foodPosition !== newFoodPosition) {
       setFoodPosition(newFoodPosition);
       setIsConsumed(false);
       dispatch(INCREASE_SNAKE());
       dispatch(INCREMENT_SCORE());
     }
-  }, [isConsumed, foodPosition, width, height, dispatch]);
+  }, [isConsumed, foodPosition, width, height]);
 
   useEffect(() => {
     // draw on canvas each time
@@ -152,16 +158,19 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
 
     // render food
     drawObject(context, [foodPosition], '#ffffff');
+  }, [context, playerSnake, foodPosition]);
 
+  useEffect(() => {
     const xDiff = Math.abs(playerSnake[0].x - foodPosition.x);
     const yDiff = Math.abs(playerSnake[1].y - foodPosition.y);
 
     // difference of position might be off a little
     // when food is consumed
-    if (xDiff <= 16 && yDiff <= 16) {
+    if (xDiff <= 16 && yDiff <= 16 && !isConsumed) {
+      // require isConsumed variable to prevent double counting
       setIsConsumed(true);
     }
-  }, [context, playerSnake, foodPosition]);
+  }, [playerSnake, foodPosition, isConsumed]);
 
   useEffect(() => {
     // check boundaries and collision
