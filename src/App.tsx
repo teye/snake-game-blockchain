@@ -149,19 +149,21 @@ function App() {
     <div className="App">
       {userState.isConnected ? (
         userState.nftBalance > 0 ? (
-          <div className="mainBoardWrapper">
-            <div className="header">
-              <div className="walletInfoWrapper">
-                <div className="walletTitle">LEVEL</div>
-                <div className="walletValue">{gameState.level}</div>
+          <div className="gameScreenWrapper">
+            <div className="mainBoardWrapper">
+              <div className="header">
+                <div className="walletInfoWrapper">
+                  <div className="walletTitle">LEVEL</div>
+                  <div className="walletValue">{gameState.level}</div>
+                </div>
+                <ScoreCard />
+                <div className="walletInfoWrapper">
+                  <div className="walletTitle">WALLET</div>
+                  <div className="walletValue">{shortenAddress(userState.wallet)}</div>
+                </div>
               </div>
-              <ScoreCard />
-              <div className="walletInfoWrapper">
-                <div className="walletTitle">WALLET</div>
-                <div className="walletValue">{shortenAddress(userState.wallet)}</div>
-              </div>
+              <CanvasBoard height={GAME_HEIGHT} width={GAME_WIDTH} />
             </div>
-            <CanvasBoard height={GAME_HEIGHT} width={GAME_WIDTH} />
             <RankingBoard />
           </div>
         ) : (

@@ -54,8 +54,11 @@ function RankingBoard() {
           {data.length === 0 && <div>No highscores.</div>}
           {data.map((player, index) => {
             return (
-              <div key={index}>
-                {index + 1}. {shortenAddress(player.address)}: {player.score}
+              <div className="rankCard" key={index}>
+                <div>
+                  {index + 1}. {shortenAddress(player.address)}
+                </div>
+                <div>{player.score}</div>
               </div>
             );
           })}
