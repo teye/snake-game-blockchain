@@ -19,12 +19,12 @@
 }
 
 .canvasWrapperGameEnd {
-  border: 2px solid #f06868;
+  border: 2px solid #000;
   border-radius: 10px;
   background-color: #37474f;
   opacity: 0.9;
-  background-image: linear-gradient(to bottom, transparent 50%, #484d51 50%),
-    linear-gradient(to right, #4e5256 50%, #484d51 50%);
+  background-image: linear-gradient(to bottom, transparent 50%, #f36363 50%),
+    linear-gradient(to right, #ef4a4a 50%, #f36363 50%);
   background-size: 36px 36px;
 }
 
@@ -64,21 +64,33 @@
   display: flex;
   justify-content: space-between;
   align-self: stretch;
-  align-items: center;
+  align-items: stretch;
   padding-top: 0.5em;
   padding-bottom: 0.5em;
-  padding-left: 1em;
-  padding-right: 1em;
-
-  font-size: 1.2em;
-  border-radius: 8px;
+  padding-left: 0;
+  padding-right: 0;
+  font-size: 1.2rem;
   color: #fff;
+  gap: 1em;
+}
+
+.scoreWrapper,
+.walletInfoWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 0.02em;
+  font-size: 2rem;
+  font-weight: 700;
+  padding: 0.5em;
+  width: 100%;
+  border-radius: 8px;
   background-color: #ffaf4f;
 }
 
-.scoreWrapper {
-  font-size: 2em;
-  font-weight: 700;
+.scoreTitle,
+.walletTitle {
+  font-size: 1rem;
+  color: #18191a;
 }
 
 .contentWrapper {

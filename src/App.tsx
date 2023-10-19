@@ -20,6 +20,7 @@ let signerProvider: ethers.providers.Web3Provider;
 function App() {
   const dispatch = useAppDispatch();
   const userState = useAppSelector((state) => state.user);
+  const gameState = useAppSelector((state) => state.game);
   const [isMinting, setIsMinting] = useState(false);
 
   const updateWalletBalance = (accounts: any) => {
@@ -150,8 +151,15 @@ function App() {
         userState.nftBalance > 0 ? (
           <div className="mainBoardWrapper">
             <div className="header">
+              <div className="walletInfoWrapper">
+                <div className="walletTitle">LEVEL</div>
+                <div className="walletValue">{gameState.level}</div>
+              </div>
               <ScoreCard />
-              <div>{shortenAddress(userState.wallet)}</div>
+              <div className="walletInfoWrapper">
+                <div className="walletTitle">WALLET</div>
+                <div className="walletValue">{shortenAddress(userState.wallet)}</div>
+              </div>
             </div>
             <CanvasBoard height={GAME_HEIGHT} width={GAME_WIDTH} />
             <RankingBoard />
