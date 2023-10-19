@@ -3,6 +3,7 @@ import React from 'react';
 import useSWR from 'swr';
 import { automataTestnet, LEADERBOARD_CONTRACT, shortenAddress } from '../utils';
 import Leaderboard_ABI from '../abis/Leaderboard_ABI.json';
+import Blockies from 'react-blockies';
 
 interface Player {
   address: string;
@@ -55,8 +56,18 @@ function RankingBoard() {
           {data.map((player, index) => {
             return (
               <div className="rankCard" key={index}>
-                <div>
-                  {index + 1}. {shortenAddress(player.address)}
+                <div className="rankInfo">
+                  {index + 1}
+                  <Blockies
+                    seed={player.address}
+                    size={10}
+                    scale={3}
+                    color="#A64B2A"
+                    bgColor="#ffed4b"
+                    spotColor="#fdcd3b"
+                    className="avatar"
+                  />
+                  {shortenAddress(player.address)}
                 </div>
                 <div>{player.score}</div>
               </div>

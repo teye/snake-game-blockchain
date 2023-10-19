@@ -114,7 +114,7 @@
   display: flex;
   flex-direction: column;
   align-self: stretch;
-  width: 12em;
+  width: 13em;
   gap: 2em;
   /* border: 1px solid #42a5f5; */
   border-radius: 20px;
@@ -122,12 +122,11 @@
   line-height: 1.5em;
 
   font-weight: 700;
-  color: #18191a;
+  color: #fafafa;
 
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border-radius: 8px;
 }
 
 .rankingContentWrapper {
@@ -143,13 +142,25 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   border-radius: 8px;
   padding: 1em;
-  color: #18191a;
-  font-weight: 700;
+  color: rgba(253, 178, 48, 0.868);
+  font-weight: 600;
 
   background: rgba(255, 255, 255, 0.25);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 8px;
+}
+
+.rankInfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.avatar {
+  border-radius: 4px;
 }
