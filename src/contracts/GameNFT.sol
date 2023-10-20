@@ -1,17 +1,17 @@
 // SPDX-License-Identifier: MIT
-pragma solidity ^0.8.9;
+pragma solidity ^0.8.20;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 import {IAutomataVRFCoordinator} from "@automata-network/contracts/vrf/IAutomataVRFCoordinator.sol";
 
 
-contract GameNFT is ERC721, ERC721URIStorage, Ownable {
+contract GameNFT is ERC721, ERC721URIStorage {
     // for random number generation during minting
     IAutomataVRFCoordinator vrfCoordinator;
-
+    
+    uint256 private _tokenIdCounter;
     mapping(address => uint256) private _tokenOwners;
 
     string[] private uriList = [
@@ -19,10 +19,6 @@ contract GameNFT is ERC721, ERC721URIStorage, Ownable {
         "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/2.json", 
         "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/3.json"
     ];
-
-    using Counters for Counters.Counter;
-
-    Counters.Counter private _tokenIdCounter;
 
     constructor(address _vrfCoordinator) ERC721("SnakeGameToken", "SNK") {
         vrfCoordinator = IAutomataVRFCoordinator(_vrfCoordinator);
@@ -36,7 +32,7 @@ contract GameNFT is ERC721, ERC721URIStorage, Ownable {
     function safeMint() public {
         require(IERC721(this).balanceOf(msg.sender) == 0, "Reached max limit per wallet");
         uint256[] memory randomSeed = vrfCoordinator.getLatestRandomWords(uint32(1));
-        uint256 magic = uint (keccak256(abi.encodePacked(msg.sender, block.timestamp, randomSeed[0]))) % 100;
+        uint256 magic = uint (keccak256(abi.encodePacked(block.timestamp, randomSeed[0]))) % 100;
 
         string memory uri;
 
@@ -53,8 +49,7 @@ contract GameNFT is ERC721, ERC721URIStorage, Ownable {
 
         if (bytes(uri).length > 0) {
             // only mint if uri is present
-            uint256 tokenId = _tokenIdCounter.current();
-            _tokenIdCounter.increment();
+            uint256 tokenId = _tokenIdCounter++;
             _safeMint(msg.sender, tokenId);
             _setTokenURI(tokenId, uri);
             _tokenOwners[msg.sender] = tokenId; 
@@ -62,10 +57,6 @@ contract GameNFT is ERC721, ERC721URIStorage, Ownable {
     }
 
     // The following functions are overrides required by Solidity.
-    function _burn(uint256 tokenId) internal override(ERC721, ERC721URIStorage) {
-        super._burn(tokenId);
-    }
-
     function tokenURI(uint256 tokenId)
         public
         view
@@ -77,5 +68,14 @@ contract GameNFT is ERC721, ERC721URIStorage, Ownable {
 
     function getTokenID(address owner) public view returns (uint256) {
         return _tokenOwners[owner];
+    }
+
+    function supportsInterface(bytes4 interfaceId)
+        public
+        view
+        override(ERC721, ERC721URIStorage)
+        returns (bool)
+    {
+        return super.supportsInterface(interfaceId);
     }
 }
