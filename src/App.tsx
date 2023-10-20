@@ -222,7 +222,6 @@ function App() {
           </Button>
         </div>
       )}
-      {/* <CanvasBoard height={GAME_HEIGHT} width={GAME_WIDTH} /> */}
     </div>
   );
 }
