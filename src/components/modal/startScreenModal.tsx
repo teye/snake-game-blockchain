@@ -40,7 +40,19 @@ function StartScreenModal(props: StartScreenModalProps) {
             <>
               <div>This game requires Metamask to play.</div>
               <div>Please install Metamask to continue.</div>
-              <Button variant="contained" href="https://metamask.io/download" target="_blank" rel="noopener">
+              <Button
+                variant="contained"
+                color="customBtnColor"
+                href="https://metamask.io/download"
+                target="_blank"
+                rel="noopener"
+                sx={{
+                  color: '#fafafa',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  borderRadius: '10px',
+                }}
+              >
                 Install Metamask
               </Button>
             </>
@@ -64,7 +76,8 @@ function StartScreenModal(props: StartScreenModalProps) {
                   game.
                 </p>
                 <Button
-                  variant="outlined"
+                  variant="contained"
+                  color="customBtnColor"
                   onClick={async () => {
                     try {
                       setIsMinting(true);
@@ -74,6 +87,12 @@ function StartScreenModal(props: StartScreenModalProps) {
                     } finally {
                       setIsMinting(false);
                     }
+                  }}
+                  sx={{
+                    color: '#fafafa',
+                    fontSize: '1rem',
+                    fontWeight: 700,
+                    borderRadius: '10px',
                   }}
                   disabled={isMinting}
                 >
@@ -93,7 +112,18 @@ function StartScreenModal(props: StartScreenModalProps) {
               <div>
                 Click <strong>Start Game</strong> and connect with your Metamask wallet.
               </div>
-              <Button variant="contained" onClick={onConnectWallet}>
+              <Button
+                variant="contained"
+                color="customBtnColor"
+                onClick={onConnectWallet}
+                disableElevation={true}
+                sx={{
+                  color: '#fafafa',
+                  fontSize: '1rem',
+                  fontWeight: 700,
+                  borderRadius: '10px',
+                }}
+              >
                 Start Game
               </Button>
             </>

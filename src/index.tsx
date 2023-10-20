@@ -7,9 +7,16 @@ import reportWebVitals from './reportWebVitals';
 import store from './store';
 import { createTheme, ThemeProvider } from '@mui/material';
 
+const { palette } = createTheme();
+const { augmentColor } = palette;
+const createColor = (mainColor: string) => augmentColor({ color: { main: mainColor } });
+
 const theme = createTheme({
   typography: {
     fontFamily: ['Play', 'sans-serif'].join(','),
+  },
+  palette: {
+    customBtnColor: createColor('#713ABE'),
   },
 });
 
