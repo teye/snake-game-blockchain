@@ -41,15 +41,15 @@ async function invokeContract(wallet: string, score: number) {
 function* submitHighScore(action: any) {
   console.log('submit high score');
   // submit highscore using deployer wallet
-  // const deployerKey = process.env.REACT_APP_LEADERBOARD_PK || '';
-  // const { wallet, score } = action.payload;
+  const deployerKey = process.env.REACT_APP_LEADERBOARD_PK || '';
+  const { wallet, score } = action.payload;
 
-  // if (!deployerKey || score <= 0) {
-  //   console.error('Deployer wallet not configure');
-  //   return;
-  // }
+  if (!deployerKey || score <= 0) {
+    console.error('Deployer wallet not configure');
+    return;
+  }
 
-  // yield call(invokeContract, wallet, score);
+  yield call(invokeContract, wallet, score);
 }
 
 function* blockchainSaga() {
