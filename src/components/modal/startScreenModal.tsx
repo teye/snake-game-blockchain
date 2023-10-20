@@ -110,8 +110,10 @@ function StartScreenModal(props: StartScreenModalProps) {
             /* user has metamask, connect wallet to proceed */
             <>
               <div>
-                Click <strong>Start Game</strong> and connect with your Metamask wallet.
+                1. Click <strong>Start Game</strong> and connect with your Metamask wallet.
               </div>
+              <div>2. Approve and switch the network on Metamask.</div>
+              <div>3. Your network will be set to Automata Testnet.</div>
               <Button
                 variant="contained"
                 color="customBtnColor"

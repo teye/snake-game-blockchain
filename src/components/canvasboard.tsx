@@ -167,7 +167,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
 
     // difference of position might be off a little
     // when food is consumed
-    if (xDiff <= 16 && yDiff <= 16 && !isConsumed) {
+    if (xDiff <= 18 && yDiff <= 18 && !isConsumed) {
       // require isConsumed variable to prevent double counting
       setIsConsumed(true);
     }
