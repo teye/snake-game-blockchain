@@ -3,13 +3,9 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
-import {IAutomataVRFCoordinator} from "@automata-network/contracts/vrf/IAutomataVRFCoordinator.sol";
-
 
 contract GameNFT is ERC721, ERC721URIStorage {
-    // for random number generation during minting
-    IAutomataVRFCoordinator vrfCoordinator;
-    
+    // no vrf
     uint256 private _tokenIdCounter;
     mapping(address => uint256) private _tokenOwners;
 
@@ -19,9 +15,7 @@ contract GameNFT is ERC721, ERC721URIStorage {
         "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/3.json"
     ];
 
-    constructor(address _vrfCoordinator) ERC721("SnakeGameToken", "SNK") {
-        vrfCoordinator = IAutomataVRFCoordinator(_vrfCoordinator);
-    }
+    constructor() ERC721("SnakeGameToken", "SNK") {}
 
     // during mint generate a number between 1 to 100
     // to be used with fetching a pre-determined uri list
@@ -30,8 +24,7 @@ contract GameNFT is ERC721, ERC721URIStorage {
     // 5% chance to get a rare
     function safeMint() public {
         require(IERC721(this).balanceOf(msg.sender) == 0, "Reached max limit per wallet");
-        uint256[] memory randomSeed = vrfCoordinator.getLatestRandomWords(uint32(1));
-        uint256 magic = uint (keccak256(abi.encodePacked(msg.sender, block.timestamp, randomSeed[0]))) % 100;
+        uint256 magic = uint (keccak256(abi.encodePacked(block.timestamp, block.difficulty, msg.sender))) % 100;
 
         string memory uri;
 

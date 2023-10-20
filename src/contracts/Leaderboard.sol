@@ -11,6 +11,9 @@ contract Leaderboard is Ownable {
     // one to store top 10
     mapping (address => uint64) public scoreboard;
     mapping (uint64 => Player) public leaderboard;
+
+    constructor(address initialOwner)
+        Ownable(initialOwner) {}
     
     // each player has a username and score
     struct Player {
