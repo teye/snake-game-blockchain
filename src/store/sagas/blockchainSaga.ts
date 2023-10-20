@@ -10,11 +10,28 @@ async function invokeContract(wallet: string, score: number) {
   const provider = new ethers.providers.JsonRpcProvider(automataTestnet.rpc);
   const signer = new ethers.Wallet(deployerKey, provider);
   const scoreboardContract = new ethers.Contract(LEADERBOARD_CONTRACT, Leaderboard_ABI, signer);
-  const tx = await scoreboardContract.addScore(`${wallet}`, `${score}`);
-  const txReceipt = await tx.wait();
 
-  if (txReceipt && txReceipt.status === 1) {
-    console.log('score updated: ', tx);
+  try {
+    let isEligible = false;
+    // always fetch the 10th player in the ranking board
+    const minTopScore = await scoreboardContract.leaderboard(9);
+
+    if (minTopScore.player === '0x0000000000000000000000000000000000000000') {
+      isEligible = true;
+    } else if (minTopScore.score.toNumber() < score) {
+      isEligible = true;
+    }
+
+    if (isEligible) {
+      const tx = await scoreboardContract.addScore(`${wallet}`, `${score}`);
+      const txReceipt = await tx.wait();
+
+      if (txReceipt && txReceipt.status === 1) {
+        console.log('score updated: ', tx);
+      }
+    }
+  } catch (e) {
+    console.log('error submitting highscore: ', e);
   }
 }
 
