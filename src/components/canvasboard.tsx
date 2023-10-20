@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import '../App.css';
 import { DOWN, LEFT, RIGHT, UP } from '../store/actions';
@@ -28,6 +28,7 @@ import {
   MOVE_UP_EVENT,
   MOVE_DOWN_EVENT,
 } from '../store/gameSlice';
+import GameOverModal from './modal/gameOverModal';
 
 interface CanvasBoardProps {
   height: number;
@@ -44,8 +45,9 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
   const disallowedDirection = useAppSelector((state: any) => state.game.disallowedDirection);
 
   const snakeColor = '#ffffff';
-  const snakeGlowColor =
-    nftState.rarity === RARITY.rare ? '#ffff00' : nftState.rarity === RARITY.uncommon ? '#2979ff' : '#00e676';
+  const snakeGlowColor = useMemo(() => {
+    return nftState.rarity === RARITY.rare ? '#ffff00' : nftState.rarity === RARITY.uncommon ? '#2979ff' : '#00e676';
+  }, [nftState]);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [context, setContext] = useState<CanvasRenderingContext2D | null>(null);
@@ -242,7 +244,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
         width={width}
       />
       <div>Controls: W,S,A,D to move - R to reset</div>
-      {gameEnded && <div color="red">Game Over</div>}
+      <GameOverModal open={gameEnded} />
     </div>
   );
 }
