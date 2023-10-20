@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/snake-game-blockchain/static/js/3.c2b81a83.chunk.js"
   },
   {
-    "revision": "88f8879c4571af7993d5fde2a8be672e",
+    "revision": "78a156cecc28ffbae6704c44d15e6b82",
     "url": "/snake-game-blockchain/index.html"
   }
 ];
