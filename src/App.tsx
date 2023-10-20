@@ -1,4 +1,3 @@
-import Button from '@mui/material/Button';
 import { ethers } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import NFTABI from './abis/NFTABI.json';
@@ -13,7 +12,8 @@ import { useAppDispatch, useAppSelector } from './store/hooks';
 import { UPDATE_RARITY, UPDATE_TOKEN_ID, UPDATE_TOKEN_URI } from './store/nftSlice';
 import { UPDATE_BALANCE, UPDATE_IS_CONNECTED, UPDATE_NFT_BALANCE, UPDATE_WALLET } from './store/userSlice';
 import { automataTestnet, GAME_HEIGHT, GAME_WIDTH, NFT_CONTRACT, shortenAddress } from './utils';
-import { CircularProgress } from '@mui/material';
+import StartScreenModal from './components/modal/startScreenModal';
+import { metaMask } from './utils/metamask';
 
 let signerProvider: ethers.providers.Web3Provider;
 
@@ -22,6 +22,7 @@ function App() {
   const userState = useAppSelector((state) => state.user);
   const gameState = useAppSelector((state) => state.game);
   const [isMinting, setIsMinting] = useState(false);
+  const [openStartScreen, setOpenStartScreen] = useState(true);
 
   const updateWalletBalance = (accounts: any) => {
     if (signerProvider && accounts.length) {
@@ -142,86 +143,48 @@ function App() {
   };
 
   useEffect(() => {
+    if (!metaMask) {
+      return;
+    }
     window.ethereum.on('accountsChanged', handleAccountsChanged);
   }, []);
 
+  useEffect(() => {
+    if (userState && userState.isConnected && userState.nftBalance > 0) {
+      setOpenStartScreen(false);
+    } else if (userState.wallet) {
+      // change account
+      // open the startscreen modal
+      setOpenStartScreen(true);
+    }
+  }, [userState]);
+
   return (
     <div className="App">
-      {userState.isConnected ? (
-        userState.nftBalance > 0 ? (
-          <div className="gameScreenWrapper">
-            <div className="mainBoardWrapper">
-              <div className="header">
-                <div className="walletInfoWrapper">
-                  <div className="walletTitle">LEVEL</div>
-                  <div className="walletValue">{gameState.level}</div>
-                </div>
-                <ScoreCard />
-                <div className="walletInfoWrapper">
-                  <div className="walletTitle">WALLET</div>
-                  <div className="walletValue">{shortenAddress(userState.wallet)}</div>
-                </div>
-              </div>
-              <CanvasBoard height={GAME_HEIGHT} width={GAME_WIDTH} />
+      <div className="gameScreenWrapper">
+        <div className="mainBoardWrapper">
+          <div className="header">
+            <div className="walletInfoWrapper">
+              <div className="walletTitle">LEVEL</div>
+              <div className="walletValue">{gameState.level}</div>
             </div>
-            <RankingBoard />
+            <ScoreCard />
+            <div className="walletInfoWrapper">
+              <div className="walletTitle">WALLET</div>
+              <div className="walletValue">{shortenAddress(userState.wallet)}</div>
+            </div>
           </div>
-        ) : (
-          <div className="menu">
-            <div className="menu-title">Snake</div>
-            <p>This game requires you to mint a NFT to proceed.</p>
-            <p>
-              For funds to mint the NFT, get some Sepolia ETH from{' '}
-              <a href="https://sepoliafaucet.com/" target="_blank" rel="noopener noreferrer">
-                https://sepoliafaucet.com/
-              </a>
-              .<br />
-              Bridge it to Automata Testnet via{' '}
-              <a href="https://bridge.ata.network/#/deposit" target="_blank" rel="noopener noreferrer">
-                https://bridge.ata.network/#/deposit
-              </a>
-            </p>
-            <p>
-              Click <strong>Mint NFT</strong> to mint a Snake and wait for the trasaction to complete to start the game.
-            </p>
-            <Button
-              variant="outlined"
-              onClick={async () => {
-                try {
-                  setIsMinting(true);
-                  await mintNFT();
-                } catch (e) {
-                  console.log(e);
-                } finally {
-                  setIsMinting(false);
-                }
-              }}
-              disabled={isMinting}
-            >
-              {isMinting && (
-                <>
-                  <CircularProgress size={14} />
-                  <>&nbsp;</>
-                </>
-              )}{' '}
-              Mint NFT
-            </Button>
-          </div>
-        )
-      ) : (
-        <div className="menu">
-          <div className="menu-title">Snake</div>
-          <div>
-            <p>Welcome to the traditional snake game.</p>
-            <p>
-              Click <strong>Start Game</strong> and connect with your Metamask wallet.
-            </p>
-          </div>
-          <Button variant="outlined" onClick={() => onConnectWallet()}>
-            Start Game
-          </Button>
+          <CanvasBoard height={GAME_HEIGHT} width={GAME_WIDTH} />
         </div>
-      )}
+        <RankingBoard />
+      </div>
+      <StartScreenModal
+        open={openStartScreen}
+        isMinting={isMinting}
+        setIsMinting={setIsMinting}
+        onConnectWallet={onConnectWallet}
+        mintNFT={mintNFT}
+      />
     </div>
   );
 }

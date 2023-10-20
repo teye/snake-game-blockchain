@@ -208,6 +208,10 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
   );
 
   useEffect(() => {
+    if (!userState || (userState && !userState.isConnected && userState.nftBalance <= 0)) {
+      return;
+    }
+
     // key input
     window.addEventListener('keypress', handleKeyEvents);
     window.addEventListener('keypress', handleResetBoard);
@@ -216,7 +220,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
       window.removeEventListener('keypress', handleKeyEvents);
       window.removeEventListener('keypress', handleResetBoard);
     };
-  }, [disallowedDirection, handleKeyEvents]);
+  }, [disallowedDirection, handleKeyEvents, userState.isConnected]);
 
   useEffect(() => {
     if (gameEnded) {
