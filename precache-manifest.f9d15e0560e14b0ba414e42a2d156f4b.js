@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "a2332bfcc8d8688154c5",
+    "revision": "91b4738465a5f15aa21c",
     "url": "/snake-game-blockchain/static/css/main.50e1d2bf.chunk.css"
   },
   {
-    "revision": "a2332bfcc8d8688154c5",
-    "url": "/snake-game-blockchain/static/js/main.1c6a5deb.chunk.js"
+    "revision": "91b4738465a5f15aa21c",
+    "url": "/snake-game-blockchain/static/js/main.4c8562a4.chunk.js"
   },
   {
     "revision": "1b96d5808bd50bbb2d23",
@@ -20,7 +20,7 @@ self.__precacheManifest = [
     "url": "/snake-game-blockchain/static/js/3.c2b81a83.chunk.js"
   },
   {
-    "revision": "e3d53e94e6a6ae496dbbd0ba20eb3b6f",
+    "revision": "c5ff4d3a29fc654d34fe41acabd94120",
     "url": "/snake-game-blockchain/index.html"
   }
 ];
