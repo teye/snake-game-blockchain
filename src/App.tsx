@@ -23,6 +23,7 @@ function App() {
   const userState = useAppSelector((state) => state.user);
   const gameState = useAppSelector((state) => state.game);
   const [isMinting, setIsMinting] = useState(false);
+  const [isStarting, setIsStarting] = useState(false);
   const [openStartScreen, setOpenStartScreen] = useState(true);
 
   const updateWalletBalance = (accounts: any) => {
@@ -102,6 +103,8 @@ function App() {
       return;
     }
 
+    setIsStarting(true);
+
     signerProvider = new ethers.providers.Web3Provider(window.ethereum);
 
     // MetaMask requires requesting permission to connect users accounts
@@ -130,7 +133,10 @@ function App() {
           }
         }
       })
-      .catch((e: any) => console.error(e));
+      .catch((e: any) => console.error(e))
+      .finally(() => {
+        setIsStarting(false);
+      });
   };
 
   const handleAccountsChanged = async (accounts: any) => {
@@ -147,6 +153,7 @@ function App() {
       updateWalletBalance(accounts);
     }
     setIsMinting(false);
+    setIsStarting(false);
   };
 
   useEffect(() => {
@@ -187,6 +194,7 @@ function App() {
       </div>
       <StartScreenModal
         open={openStartScreen}
+        isStarting={isStarting}
         isMinting={isMinting}
         setIsMinting={setIsMinting}
         onConnectWallet={onConnectWallet}

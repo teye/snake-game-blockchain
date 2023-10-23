@@ -5,6 +5,7 @@ import { metaMask } from '../../utils/metamask';
 
 interface StartScreenModalProps {
   open: boolean;
+  isStarting: boolean;
   isMinting: boolean;
   setIsMinting: React.Dispatch<React.SetStateAction<boolean>>;
   onConnectWallet: () => void;
@@ -12,7 +13,7 @@ interface StartScreenModalProps {
 }
 
 function StartScreenModal(props: StartScreenModalProps) {
-  const { open, isMinting, onConnectWallet, mintNFT, setIsMinting } = props;
+  const { open, isStarting, isMinting, onConnectWallet, mintNFT, setIsMinting } = props;
   const userState = useAppSelector((state) => state.user);
 
   if (userState && userState.isConnected && userState.nftBalance > 0) {
@@ -123,7 +124,14 @@ function StartScreenModal(props: StartScreenModalProps) {
                   fontWeight: 700,
                   borderRadius: '10px',
                 }}
+                disabled={isStarting}
               >
+                {isStarting && (
+                  <>
+                    <CircularProgress size={14} />
+                    <>&nbsp;</>
+                  </>
+                )}{' '}
                 Start Game
               </Button>
             </>

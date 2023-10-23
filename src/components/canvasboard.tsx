@@ -29,6 +29,8 @@ import {
   MOVE_DOWN_EVENT,
 } from '../store/gameSlice';
 import GameOverModal from './modal/gameOverModal';
+import Button from '@mui/material/Button';
+import NFTDetailsModal from './modal/nftDetailsModal';
 
 interface CanvasBoardProps {
   height: number;
@@ -62,6 +64,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
   );
   const [isConsumed, setIsConsumed] = useState<boolean>(false);
   const [gameEnded, setGameEnded] = useState<boolean>(false);
+  const [openNFTModal, setOpenNFTModal] = useState<boolean>(false);
 
   // ds = direction not allowed
   const moveSnake = useCallback(
@@ -254,8 +257,23 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
         height={height}
         width={width}
       />
-      <div>Controls: W,S,A,D to move - R to reset</div>
+      <div className="instructionWrapper">
+        <div>Controls: W,S,A,D to move - R to reset</div>
+        <Button
+          variant="outlined"
+          onClick={() => setOpenNFTModal(true)}
+          sx={{
+            color: '#fafafa',
+            fontSize: '1rem',
+            fontWeight: 700,
+            borderRadius: '10px',
+          }}
+        >
+          View NFT
+        </Button>
+      </div>
       <GameOverModal open={gameEnded} />
+      <NFTDetailsModal open={openNFTModal} onClose={() => setOpenNFTModal(false)} />
     </div>
   );
 }
