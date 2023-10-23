@@ -95,7 +95,7 @@ export interface NetworkChain {
 
 export const gameNetwork = {
   name: 'Sepolia',
-  rpc: 'https://rpc-sepolia.rockx.com',
+  rpc: 'https://endpoints.omniatech.io/v1/eth/sepolia/public',
   chainId: 11155111,
   chainIdHex: '0xaa36a7',
   currency: 'SepoliaETH',
