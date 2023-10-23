@@ -43,7 +43,7 @@ const fetchRanking = async (key: string) => {
 };
 
 function RankingBoard() {
-  const { data, error, isLoading } = useSWR('fetch_ranking', fetchRanking, { refreshInterval: 30000 });
+  const { data, error, isLoading } = useSWR('fetch_ranking', fetchRanking, { refreshInterval: 60000 });
 
   return (
     <div className="rankingBoardWrapper">
