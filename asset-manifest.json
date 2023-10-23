@@ -1,15 +1,16 @@
 {
-  "main.css": "/snake-game-blockchain/static/css/main.50e1d2bf.chunk.css",
-  "main.js": "/snake-game-blockchain/static/js/main.86c7904e.chunk.js",
-  "main.js.map": "/snake-game-blockchain/static/js/main.86c7904e.chunk.js.map",
-  "runtime~main.js": "/snake-game-blockchain/static/js/runtime~main.a1587c18.js",
-  "runtime~main.js.map": "/snake-game-blockchain/static/js/runtime~main.a1587c18.js.map",
-  "static/js/2.782846fd.chunk.js": "/snake-game-blockchain/static/js/2.782846fd.chunk.js",
-  "static/js/2.782846fd.chunk.js.map": "/snake-game-blockchain/static/js/2.782846fd.chunk.js.map",
-  "static/js/3.c2b81a83.chunk.js": "/snake-game-blockchain/static/js/3.c2b81a83.chunk.js",
-  "static/js/3.c2b81a83.chunk.js.map": "/snake-game-blockchain/static/js/3.c2b81a83.chunk.js.map",
+  "main.css": "/snake-game-blockchain/static/css/main.604feaa8.chunk.css",
+  "main.js": "/snake-game-blockchain/static/js/main.ce037841.chunk.js",
+  "main.js.map": "/snake-game-blockchain/static/js/main.ce037841.chunk.js.map",
+  "runtime~main.js": "/snake-game-blockchain/static/js/runtime~main.67c6f8d4.js",
+  "runtime~main.js.map": "/snake-game-blockchain/static/js/runtime~main.67c6f8d4.js.map",
+  "static/js/2.ccfdaa6b.chunk.js": "/snake-game-blockchain/static/js/2.ccfdaa6b.chunk.js",
+  "static/js/2.ccfdaa6b.chunk.js.map": "/snake-game-blockchain/static/js/2.ccfdaa6b.chunk.js.map",
+  "static/js/3.dca0faba.chunk.js": "/snake-game-blockchain/static/js/3.dca0faba.chunk.js",
+  "static/js/3.dca0faba.chunk.js.map": "/snake-game-blockchain/static/js/3.dca0faba.chunk.js.map",
   "index.html": "/snake-game-blockchain/index.html",
-  "precache-manifest.2794e40823e15729f4f9b74668d9c387.js": "/snake-game-blockchain/precache-manifest.2794e40823e15729f4f9b74668d9c387.js",
+  "precache-manifest.a29fb3c859119ab4e6a9e95540b542bd.js": "/snake-game-blockchain/precache-manifest.a29fb3c859119ab4e6a9e95540b542bd.js",
   "service-worker.js": "/snake-game-blockchain/service-worker.js",
-  "static/css/main.50e1d2bf.chunk.css.map": "/snake-game-blockchain/static/css/main.50e1d2bf.chunk.css.map"
+  "static/css/main.604feaa8.chunk.css.map": "/snake-game-blockchain/static/css/main.604feaa8.chunk.css.map",
+  "static/media/garden_snake.png": "/snake-game-blockchain/static/media/garden_snake.237d35f8.png"
 }
