@@ -46,7 +46,13 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
 
   const snakeColor = '#ffffff';
   const snakeGlowColor = useMemo(() => {
-    return nftState.rarity === RARITY.rare ? '#ffff00' : nftState.rarity === RARITY.uncommon ? '#2979ff' : '#00e676';
+    return nftState.rarity === RARITY.common
+      ? '#00e676'
+      : nftState.rarity === RARITY.rare
+      ? '#ffff00'
+      : nftState.rarity === RARITY.uncommon
+      ? '#2979ff'
+      : '#000000';
   }, [nftState]);
 
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -150,6 +156,11 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
   }, [isConsumed, foodPosition, width, height]);
 
   useEffect(() => {
+    if (userState.nftBalance !== 1) {
+      // only load snake if user has connect wallet
+      return;
+    }
+
     // draw on canvas each time
     setContext(canvasRef.current && canvasRef.current.getContext('2d'));
     clearBoard(context);
@@ -159,7 +170,7 @@ function CanvasBoard({ height, width }: CanvasBoardProps) {
 
     // render food
     drawObject(context, [foodPosition], '#ffffff');
-  }, [context, playerSnake, foodPosition]);
+  }, [context, playerSnake, foodPosition, userState.nftBalance]);
 
   useEffect(() => {
     const xDiff = Math.abs(playerSnake[0].x - foodPosition.x);
