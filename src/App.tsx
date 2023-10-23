@@ -138,6 +138,10 @@ function App() {
       console.log('Please connect to Metamask');
     } else if (accounts[0].toLowerCase() !== userState.wallet.toLowerCase()) {
       const address = ethers.utils.getAddress(accounts[0]);
+      dispatch(UPDATE_NFT_BALANCE(0));
+      dispatch(UPDATE_TOKEN_ID(''));
+      dispatch(UPDATE_TOKEN_URI(''));
+      dispatch(UPDATE_RARITY(''));
       await fetchNFT(address);
       dispatch(UPDATE_WALLET(address));
       updateWalletBalance(accounts);

@@ -6,7 +6,7 @@
   gap: 1em;
   padding: 1.25em;
   min-height: calc(100vh - 2.5em);
-  background: linear-gradient(110deg, #fdcd3b 60%, #ffed4b 60%);
+  background: linear-gradient(110deg, #b8e4ff 60%, #8ed1fb 60%);
 }
 
 .canvasWrapper {
@@ -14,8 +14,8 @@
   border-radius: 20px;
   background-color: #37474f;
   opacity: 1;
-  background-image: linear-gradient(to bottom, transparent 50%, #583c87 50%),
-    linear-gradient(to right, #5e428e 50%, #583c87 50%);
+  background-image: linear-gradient(to bottom, transparent 50%, #5272f2 50%),
+    linear-gradient(to right, #4567ef 50%, #5272f2 50%);
   background-size:
     36px 36px,
     36px 36px;
@@ -80,7 +80,7 @@
   padding-left: 0;
   padding-right: 0;
   font-size: 1.2rem;
-  color: #fff;
+  color: #279eff;
   gap: 1em;
 }
 
@@ -94,7 +94,7 @@
   padding: 0.5em;
   width: 100%;
 
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-radius: 8px;
@@ -117,7 +117,7 @@
   flex-direction: column;
   align-self: stretch;
   width: 13em;
-  gap: 2em;
+  gap: 0.5em;
   /* border: 1px solid #42a5f5; */
   border-radius: 20px;
   padding: 1.5em;
@@ -126,7 +126,7 @@
   font-weight: 700;
   color: #18191a;
 
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -147,7 +147,7 @@
   align-items: center;
   border-radius: 8px;
   padding: 1em;
-  color: #f99417;
+  color: #6499e9;
   font-weight: 600;
 
   background: rgba(255, 255, 255, 0.25);
@@ -176,9 +176,9 @@
   padding: 20px;
   border-radius: 14px;
   background-color: #fafafa;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 1);
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
 }
 
 .modalContentWrapper {
@@ -199,9 +199,9 @@
   padding: 20px;
   border-radius: 14px;
   background-color: #fafafa;
-  background: rgba(255, 255, 255, 0.8);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 1);
+  /* backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); */
 }
 
 .gameOverTitle {
@@ -226,5 +226,5 @@
 .gameOverScore {
   font-size: 2rem;
   font-weight: 700;
-  color: #ffffff;
+  color: #279eff;
 }

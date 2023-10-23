@@ -16,7 +16,7 @@ const theme = createTheme({
     fontFamily: ['Play', 'sans-serif'].join(','),
   },
   palette: {
-    customBtnColor: createColor('#713ABE'),
+    customBtnColor: createColor('#0284ff'),
   },
 });
 

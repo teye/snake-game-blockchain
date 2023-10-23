@@ -62,9 +62,9 @@ function RankingBoard() {
                     seed={player.address}
                     size={10}
                     scale={3}
-                    color="#A64B2A"
-                    bgColor="#ffed4b"
-                    spotColor="#fdcd3b"
+                    color="#8ed1fb"
+                    bgColor="#5272f2"
+                    spotColor="#aedefc"
                     className="avatar"
                   />
                   {shortenAddress(player.address)}

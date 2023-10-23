@@ -59,17 +59,17 @@ function StartScreenModal(props: StartScreenModalProps) {
           ) : userState.isConnected ? (
             userState.nftBalance > 0 ? null : (
               <>
-                <p>This game requires you to mint a NFT to proceed.</p>
-                <p>
+                <div>This game requires you to mint a NFT to proceed.</div>
+                <div>
                   Get some Sepolia ETH from{' '}
                   <a href="https://sepoliafaucet.com/" target="_blank" rel="noopener noreferrer">
                     https://sepoliafaucet.io/
                   </a>
-                </p>
-                <p>
+                </div>
+                <div>
                   Click <strong>Mint NFT</strong> to mint a Snake.
-                </p>
-                <p>Wait for the trasaction to complete and you may begin the game.</p>
+                </div>
+                <div>Wait for the trasaction to finish and you may begin the game.</div>
                 <Button
                   variant="contained"
                   color="customBtnColor"
