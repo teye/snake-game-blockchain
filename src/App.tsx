@@ -1,6 +1,7 @@
 import { ethers } from 'ethers';
 import React, { useEffect, useState } from 'react';
 import NFTABI from './abis/NFTABI.json';
+import NFTNoVRFABI from './abis/NFTNoVRFABI.json';
 import './App.css';
 import CanvasBoard from './components/canvasboard';
 import RankingBoard from './components/rankingboard';
@@ -11,7 +12,7 @@ import RARE_SNAKE_DATA from './metadata/3.json';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { UPDATE_RARITY, UPDATE_TOKEN_ID, UPDATE_TOKEN_URI } from './store/nftSlice';
 import { UPDATE_BALANCE, UPDATE_IS_CONNECTED, UPDATE_NFT_BALANCE, UPDATE_WALLET } from './store/userSlice';
-import { automataTestnet, GAME_HEIGHT, GAME_WIDTH, NFT_CONTRACT, shortenAddress } from './utils';
+import { gameNetwork, GAME_HEIGHT, GAME_WIDTH, NFT_CONTRACT, shortenAddress } from './utils';
 import StartScreenModal from './components/modal/startScreenModal';
 import { metaMask } from './utils/metamask';
 
@@ -49,40 +50,49 @@ function App() {
   };
 
   const fetchNFT = async (wallet: string) => {
-    let rpcProvider: ethers.providers.JsonRpcProvider = new ethers.providers.JsonRpcProvider(automataTestnet.rpc);
-    const nftContract = new ethers.Contract(NFT_CONTRACT, NFTABI, rpcProvider);
+    let rpcProvider: ethers.providers.JsonRpcProvider = new ethers.providers.JsonRpcProvider(gameNetwork.rpc);
+    const nftContract = new ethers.Contract(NFT_CONTRACT, NFTNoVRFABI, rpcProvider);
     const nftBalance = await nftContract.balanceOf(wallet);
 
-    if (nftBalance) {
-      const tokenId = await nftContract.getTokenID(wallet);
-      const tokenURI = await nftContract.tokenURI(tokenId);
+    if (nftBalance.toNumber() > 0) {
+      try {
+        const tokenId = await nftContract.getTokenID(wallet);
 
-      // read token URI and save nft info
-      // should do this from a db or directly via IPFS
-      // ipfs url is https://<gateway>/ipfs/<CID>/<num>.json
-      const tokenURIArray = tokenURI.split('/');
-      const lastPart = tokenURIArray[tokenURIArray.length - 1];
-      let rarity;
-      let json;
+        if (!tokenId) {
+          return;
+        }
 
-      if (lastPart === '3.json') {
-        json = RARE_SNAKE_DATA;
-      } else if (lastPart === '2.json') {
-        json = UNCOMMON_SNAKE_DATA;
-      } else {
-        json = COMMON_SNAKE_DATA;
+        const tokenURI = await nftContract.tokenURI(tokenId);
+
+        // read token URI and save nft info
+        // should do this from a db or directly via IPFS
+        // ipfs url is https://<gateway>/ipfs/<CID>/<num>.json
+        const tokenURIArray = tokenURI.split('/');
+        const lastPart = tokenURIArray[tokenURIArray.length - 1];
+        let rarity;
+        let json;
+
+        if (lastPart === '3.json') {
+          json = RARE_SNAKE_DATA;
+        } else if (lastPart === '2.json') {
+          json = UNCOMMON_SNAKE_DATA;
+        } else {
+          json = COMMON_SNAKE_DATA;
+        }
+
+        rarity = json.attributes[0].trait_type === 'Rarity' && json.attributes[0].value;
+
+        console.log('token id: ', tokenId.toNumber());
+        console.log('token uri: ', tokenURI);
+        console.log('rarity: ', rarity);
+
+        dispatch(UPDATE_NFT_BALANCE(nftBalance.toNumber()));
+        dispatch(UPDATE_TOKEN_ID(tokenId.toNumber()));
+        dispatch(UPDATE_TOKEN_URI(tokenURI));
+        dispatch(UPDATE_RARITY(rarity));
+      } catch (e) {
+        console.error(e);
       }
-
-      rarity = json.attributes[0].trait_type === 'Rarity' && json.attributes[0].value;
-
-      console.log('token id: ', tokenId.toNumber());
-      console.log('token uri: ', tokenURI);
-      console.log('rarity: ', rarity);
-
-      dispatch(UPDATE_NFT_BALANCE(nftBalance.toNumber()));
-      dispatch(UPDATE_TOKEN_ID(tokenId.toNumber()));
-      dispatch(UPDATE_TOKEN_URI(tokenURI));
-      dispatch(UPDATE_RARITY(rarity));
     }
   };
 
@@ -101,17 +111,10 @@ function App() {
         if (accounts.length > 0) {
           try {
             await (signerProvider.provider as any).request({
-              method: 'wallet_addEthereumChain',
+              method: 'wallet_switchEthereumChain',
               params: [
                 {
-                  chainId: automataTestnet.chainIdHex,
-                  chainName: automataTestnet.name,
-                  rpcUrls: [`${automataTestnet.rpc}`],
-                  blockExplorerUrls: [`${automataTestnet.explorer}`],
-                  nativeCurrency: {
-                    symbol: automataTestnet.currency,
-                    decimals: 18,
-                  },
+                  chainId: gameNetwork.chainIdHex,
                 },
               ],
             });

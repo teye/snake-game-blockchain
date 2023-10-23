@@ -61,20 +61,15 @@ function StartScreenModal(props: StartScreenModalProps) {
               <>
                 <p>This game requires you to mint a NFT to proceed.</p>
                 <p>
-                  1. For funds to mint the NFT, get some Sepolia ETH from{' '}
+                  Get some Sepolia ETH from{' '}
                   <a href="https://sepoliafaucet.com/" target="_blank" rel="noopener noreferrer">
-                    https://sepoliafaucet.com/
-                  </a>
-                  .<br />
-                  2. Bridge it to Automata Testnet via{' '}
-                  <a href="https://bridge.ata.network/#/deposit" target="_blank" rel="noopener noreferrer">
-                    https://bridge.ata.network/#/deposit
+                    https://sepoliafaucet.io/
                   </a>
                 </p>
                 <p>
-                  Click <strong>Mint NFT</strong> to mint a Snake and wait for the trasaction to complete to start the
-                  game.
+                  Click <strong>Mint NFT</strong> to mint a Snake.
                 </p>
+                <p>Wait for the trasaction to complete and you may begin the game.</p>
                 <Button
                   variant="contained"
                   color="customBtnColor"
@@ -113,7 +108,10 @@ function StartScreenModal(props: StartScreenModalProps) {
                 1. Click <strong>Start Game</strong> and connect with your Metamask wallet.
               </div>
               <div>2. Approve and switch the network on Metamask.</div>
-              <div>3. Your network will be set to Automata Testnet.</div>
+              <div>3. Your network will be set to Sepolia Testnet.</div>
+              <div>
+                Toggle <strong>Show test networks</strong> on Metamask if the Metamask does not prompt for the switch.
+              </div>
               <Button
                 variant="contained"
                 color="customBtnColor"

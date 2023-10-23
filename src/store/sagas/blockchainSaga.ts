@@ -1,13 +1,13 @@
 import 'dotenv/config';
 import { ethers } from 'ethers';
 import { call, takeEvery } from 'redux-saga/effects';
-import { automataTestnet, LEADERBOARD_CONTRACT } from '../../utils';
+import { gameNetwork, LEADERBOARD_CONTRACT } from '../../utils';
 import { SUBMIT_HIGH_SCORE } from '../blockchainSlice';
 import Leaderboard_ABI from '../../abis/Leaderboard_ABI.json';
 
 async function invokeContract(wallet: string, score: number) {
   const deployerKey = process.env.REACT_APP_LEADERBOARD_PK || '';
-  const provider = new ethers.providers.JsonRpcProvider(automataTestnet.rpc);
+  const provider = new ethers.providers.JsonRpcProvider(gameNetwork.rpc);
   const signer = new ethers.Wallet(deployerKey, provider);
   const scoreboardContract = new ethers.Contract(LEADERBOARD_CONTRACT, Leaderboard_ABI, signer);
 

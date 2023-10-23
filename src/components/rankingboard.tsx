@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import React from 'react';
 import useSWR from 'swr';
-import { automataTestnet, LEADERBOARD_CONTRACT, shortenAddress } from '../utils';
+import { gameNetwork, LEADERBOARD_CONTRACT, shortenAddress } from '../utils';
 import Leaderboard_ABI from '../abis/Leaderboard_ABI.json';
 import Blockies from 'react-blockies';
 
@@ -20,7 +20,7 @@ const fetchRanking = async (key: string) => {
   console.log('fetching ranking');
   let data: Player[] = [];
 
-  const provider = new ethers.providers.JsonRpcProvider(automataTestnet.rpc);
+  const provider = new ethers.providers.JsonRpcProvider(gameNetwork.rpc);
   const rankingContract = new ethers.Contract(LEADERBOARD_CONTRACT, Leaderboard_ABI, provider);
 
   try {

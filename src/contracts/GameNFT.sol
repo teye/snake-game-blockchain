@@ -14,9 +14,9 @@ contract GameNFT is ERC721, ERC721URIStorage {
     mapping(address => uint256) private _tokenOwners;
 
     string[] private uriList = [
-        "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/1.json", 
-        "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/2.json", 
-        "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmdE4FfLUhXsZd6yUh7HyEDFNQbkzjpY5MgAC7PYTFfvm3/3.json"
+        "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmWQfrtKz3koNRkV1EJgM7VJ2kzJ3yummMBUNRXDKRt8dp/1.json", 
+        "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmWQfrtKz3koNRkV1EJgM7VJ2kzJ3yummMBUNRXDKRt8dp/2.json", 
+        "https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmWQfrtKz3koNRkV1EJgM7VJ2kzJ3yummMBUNRXDKRt8dp/3.json"
     ];
 
     constructor(address _vrfCoordinator) ERC721("SnakeGameToken", "SNK") {
