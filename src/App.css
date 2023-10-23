@@ -176,9 +176,9 @@
   padding: 20px;
   border-radius: 14px;
   background-color: #fafafa;
-  background: rgba(255, 255, 255, 1);
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .modalContentWrapper {
@@ -199,9 +199,9 @@
   padding: 20px;
   border-radius: 14px;
   background-color: #fafafa;
-  background: rgba(255, 255, 255, 1);
-  /* backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); */
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
 }
 
 .gameOverTitle {
