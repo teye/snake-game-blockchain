@@ -4,6 +4,7 @@ import useSWR from 'swr';
 import { gameNetworkProvider, LEADERBOARD_CONTRACT, shortenAddress } from '../utils';
 import Leaderboard_ABI from '../abis/Leaderboard_ABI.json';
 import Blockies from 'react-blockies';
+import { MulticallWrapper } from 'ethers-multicall-provider';
 
 interface Player {
   address: string;
@@ -20,19 +21,24 @@ const fetchRanking = async (key: string) => {
   console.log('fetching ranking');
   let data: Player[] = [];
 
-  const rankingContract = new ethers.Contract(LEADERBOARD_CONTRACT, Leaderboard_ABI, gameNetworkProvider);
-
   try {
+    const multicall = MulticallWrapper.wrap(gameNetworkProvider);
+    const rankingContract = new ethers.Contract(LEADERBOARD_CONTRACT, Leaderboard_ABI, multicall);
+    const calls = [];
+
     for (let i = 0; i < MAX_TOP_PLAYER_COUNT; i++) {
-      const player = await rankingContract.leaderboard(i);
-      if (player.player === '0x0000000000000000000000000000000000000000') {
-        // leader board is empty
-        break;
+      calls.push(rankingContract.leaderboard(i));
+    }
+
+    const scoresList = await Promise.all(calls);
+
+    for (const player of scoresList) {
+      if (player && player.player !== '0x0000000000000000000000000000000000000000') {
+        data.push({
+          address: player.player,
+          score: player.score.toNumber(),
+        } as Player);
       }
-      data.push({
-        address: player.player,
-        score: player.score.toNumber(),
-      } as Player);
     }
   } catch (err) {
     console.log('error fetching ranking: ', err);

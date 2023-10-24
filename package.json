@@ -22,6 +22,7 @@
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
     "ethers": "^5.7.2",
+    "ethers-multicall-provider": "^3.1.2",
     "gh-pages": "^6.0.0",
     "react": "^18.2.0",
     "react-blockies": "^1.4.1",
