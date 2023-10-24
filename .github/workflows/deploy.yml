@@ -30,7 +30,7 @@ jobs:
         env:
           REACT_APP_LEADERBOARD_PK: ${{ secrets.SNAKE_GAME_LEADERBOARD_PK }}
         run: |
-          npm clean && npm install
+          npm ci
           npm run build --if-present
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v3
