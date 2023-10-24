@@ -8,6 +8,7 @@ import RARE_SNAKE_DATA from '../../metadata/3.json';
 import gardenSnake from '../../assets/garden_snake.png';
 import viper from '../../assets/viper.png';
 import kingCobra from '../../assets/king_cobra.png';
+import { XMarkIcon } from '@heroicons/react/24/solid';
 
 interface NFTDetailsModalProps {
   open: boolean;
@@ -73,6 +74,9 @@ function NFTDetailsModal(props: NFTDetailsModalProps) {
       onClose={onClose}
     >
       <div className="nftDetailsModalWrapper">
+        <button className="modalCloseBtn" onClick={() => onClose()}>
+          <XMarkIcon />
+        </button>
         <div>
           {/* nft image */}
           <img src={imageSrc} alt="nft image" className="nftImageStyle" />
