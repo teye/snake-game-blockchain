@@ -6,6 +6,8 @@ import COMMON_SNAKE_DATA from '../../metadata/1.json';
 import UNCOMMON_SNAKE_DATA from '../../metadata/2.json';
 import RARE_SNAKE_DATA from '../../metadata/3.json';
 import gardenSnake from '../../assets/garden_snake.png';
+import viper from '../../assets/viper.png';
+import kingCobra from '../../assets/king_cobra.png';
 
 interface NFTDetailsModalProps {
   open: boolean;
@@ -42,10 +44,13 @@ function NFTDetailsModal(props: NFTDetailsModalProps) {
 
     if (lastPart === '3.json') {
       json = RARE_SNAKE_DATA;
+      setImageSrc(kingCobra);
     } else if (lastPart === '2.json') {
       json = UNCOMMON_SNAKE_DATA;
+      setImageSrc(viper);
     } else {
       json = COMMON_SNAKE_DATA;
+      setImageSrc(gardenSnake);
     }
     setMetadata({
       name: json.name,
@@ -54,7 +59,6 @@ function NFTDetailsModal(props: NFTDetailsModalProps) {
       external_url: json.external_url,
       attributes: JSON.parse(JSON.stringify(json.attributes)),
     } as NFTMetdata);
-    setImageSrc(gardenSnake);
   }, [nftState.tokenURI]);
 
   return (
