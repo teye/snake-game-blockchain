@@ -9,6 +9,7 @@ import gardenSnake from '../../assets/garden_snake.png';
 import viper from '../../assets/viper.png';
 import kingCobra from '../../assets/king_cobra.png';
 import { XMarkIcon } from '@heroicons/react/24/solid';
+import ClipboardButton from '../clipboard-btn';
 
 interface NFTDetailsModalProps {
   open: boolean;
@@ -85,11 +86,15 @@ function NFTDetailsModal(props: NFTDetailsModalProps) {
           {/* nft details */}
           <div>
             <div className="nftDetailsTitle">NFT</div>
-            <div>{NFT_CONTRACT}</div>
+            <div className="nftDetailsValueWithClipboard">
+              <div>{NFT_CONTRACT}</div> <ClipboardButton copyText={NFT_CONTRACT} />
+            </div>
           </div>
           <div>
             <div className="nftDetailsTitle">TOKEN ID</div>
-            <div>#{nftState.tokenID}</div>
+            <div className="nftDetailsValueWithClipboard">
+              <div>#{nftState.tokenID}</div> <ClipboardButton copyText={nftState.tokenID} />
+            </div>
           </div>
           <div>
             <div className="nftDetailsTitle">RARITY</div>
