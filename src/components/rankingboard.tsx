@@ -1,7 +1,7 @@
 import { ethers } from 'ethers';
 import React from 'react';
 import useSWR from 'swr';
-import { gameNetwork, LEADERBOARD_CONTRACT, shortenAddress } from '../utils';
+import { gameNetworkProvider, LEADERBOARD_CONTRACT, shortenAddress } from '../utils';
 import Leaderboard_ABI from '../abis/Leaderboard_ABI.json';
 import Blockies from 'react-blockies';
 
@@ -20,8 +20,7 @@ const fetchRanking = async (key: string) => {
   console.log('fetching ranking');
   let data: Player[] = [];
 
-  const provider = new ethers.providers.JsonRpcProvider(gameNetwork.rpc);
-  const rankingContract = new ethers.Contract(LEADERBOARD_CONTRACT, Leaderboard_ABI, provider);
+  const rankingContract = new ethers.Contract(LEADERBOARD_CONTRACT, Leaderboard_ABI, gameNetworkProvider);
 
   try {
     for (let i = 0; i < MAX_TOP_PLAYER_COUNT; i++) {
@@ -43,7 +42,10 @@ const fetchRanking = async (key: string) => {
 };
 
 function RankingBoard() {
-  const { data, error, isLoading } = useSWR('fetch_ranking', fetchRanking, { refreshInterval: 60000 });
+  const { data, error, isLoading } = useSWR('fetch_ranking', fetchRanking, {
+    refreshInterval: 60000,
+    revalidateOnFocus: false,
+  });
 
   return (
     <div className="rankingBoardWrapper">

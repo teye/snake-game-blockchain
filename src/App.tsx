@@ -12,7 +12,7 @@ import RARE_SNAKE_DATA from './metadata/3.json';
 import { useAppDispatch, useAppSelector } from './store/hooks';
 import { UPDATE_RARITY, UPDATE_TOKEN_ID, UPDATE_TOKEN_URI } from './store/nftSlice';
 import { UPDATE_BALANCE, UPDATE_IS_CONNECTED, UPDATE_NFT_BALANCE, UPDATE_WALLET } from './store/userSlice';
-import { gameNetwork, GAME_HEIGHT, GAME_WIDTH, NFT_CONTRACT, shortenAddress } from './utils';
+import { gameNetwork, gameNetworkProvider, GAME_HEIGHT, GAME_WIDTH, NFT_CONTRACT, shortenAddress } from './utils';
 import StartScreenModal from './components/modal/startScreenModal';
 import { metaMask } from './utils/metamask';
 
@@ -41,7 +41,7 @@ function App() {
     }
 
     const signer = signerProvider.getSigner();
-    const nftContract = new ethers.Contract(NFT_CONTRACT, NFTABI, signer);
+    const nftContract = new ethers.Contract(NFT_CONTRACT, NFTNoVRFABI, signer);
     const mintTx = await nftContract.safeMint();
     const mintTxReceipt = await mintTx.wait();
 
@@ -51,8 +51,7 @@ function App() {
   };
 
   const fetchNFT = async (wallet: string) => {
-    let rpcProvider: ethers.providers.JsonRpcProvider = new ethers.providers.JsonRpcProvider(gameNetwork.rpc);
-    const nftContract = new ethers.Contract(NFT_CONTRACT, NFTNoVRFABI, rpcProvider);
+    const nftContract = new ethers.Contract(NFT_CONTRACT, NFTNoVRFABI, gameNetworkProvider);
     const nftBalance = await nftContract.balanceOf(wallet);
 
     if (nftBalance.toNumber() > 0) {

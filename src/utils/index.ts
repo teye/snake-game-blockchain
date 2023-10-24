@@ -1,3 +1,4 @@
+import { ethers } from 'ethers';
 import { ObjectBody } from '../types';
 
 export const GAME_HEIGHT = 600;
@@ -112,6 +113,12 @@ export const automataTestnet = {
   explorer: 'https://explorer.ata.network',
   decimals: 18,
 } as NetworkChain;
+
+const secondaryRPC = 'https://rpc-sepolia.rockx.com';
+
+export const gameNetworkProvider: ethers.providers.StaticJsonRpcProvider = new ethers.providers.StaticJsonRpcProvider(
+  secondaryRPC,
+);
 
 export enum RARITY {
   common = 'common',
