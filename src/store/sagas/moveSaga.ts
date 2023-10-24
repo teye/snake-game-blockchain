@@ -53,10 +53,12 @@ export function* moveSaga(actions: any) {
         gameSpeed = 70;
       } else if (level === 5) {
         gameSpeed = 60;
-      } else if (level > 5) {
+      } else if (level === 6) {
         gameSpeed = 50;
-      } else if (level > 9) {
+      } else if (level === 7) {
         gameSpeed = 40;
+      } else if (level > 7) {
+        gameSpeed = 30;
       }
     }
     yield delay(gameSpeed);
