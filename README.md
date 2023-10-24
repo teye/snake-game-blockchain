@@ -11,7 +11,9 @@ You would also need Sepolia ETH.
 ### Project Info
 
 NFT metadata are uploaded on [IPFS](https://lavender-eligible-mosquito-391.mypinata.cloud/ipfs/QmWQfrtKz3koNRkV1EJgM7VJ2kzJ3yummMBUNRXDKRt8dp/)
+
 NFT Contract: [0xB3a54BeBd28838c303c44f8fD7E1E5c7560a11F5](https://sepolia.etherscan.io/address/0xB3a54BeBd28838c303c44f8fD7E1E5c7560a11F5)
+
 Leaderboard Contract: [0x2f65d1142fB7577D8DE00fDA4De4a6A33e6CdD56](https://sepolia.etherscan.io/address/0x2f65d1142fB7577D8DE00fDA4De4a6A33e6CdD56)
 
 ### Import NFT to Metamask
