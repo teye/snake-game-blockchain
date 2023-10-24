@@ -63,14 +63,14 @@ function StartScreenModal(props: StartScreenModalProps) {
                 <div>This game requires you to mint a NFT to proceed.</div>
                 <div>
                   Get some Sepolia ETH from{' '}
-                  <a href="https://sepoliafaucet.com/" target="_blank" rel="noopener noreferrer">
+                  <a href="https://sepoliafaucet.io/" target="_blank" rel="noopener noreferrer">
                     https://sepoliafaucet.io/
                   </a>
                 </div>
                 <div>
                   Click <strong>Mint NFT</strong> to mint a Snake.
                 </div>
-                <div>Wait for the trasaction to finish and you may begin the game.</div>
+                <div>Wait for the transaction to finish and you may begin the game.</div>
                 <Button
                   variant="contained"
                   color="customBtnColor"
