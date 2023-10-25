@@ -6,7 +6,7 @@ export const GAME_WIDTH = 600;
 export const GAME_CHAR_PIXEL_HEIGHT = 20;
 export const GAME_CHAR_PIXEL_WIDTH = 20;
 export const NFT_CONTRACT = '0xB3a54BeBd28838c303c44f8fD7E1E5c7560a11F5';
-export const LEADERBOARD_CONTRACT = '0x2f65d1142fB7577D8DE00fDA4De4a6A33e6CdD56';
+export const LEADERBOARD_CONTRACT = '0x33367d50f7dc1C4b922790341Bc009371f179b44';
 
 export const clearBoard = (context: CanvasRenderingContext2D | null) => {
   if (context) {
