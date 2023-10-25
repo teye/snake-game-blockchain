@@ -1,11 +1,11 @@
 self.__precacheManifest = [
   {
-    "revision": "4ab4d91dacd9a4089e6f",
+    "revision": "ebbedb8852b9ff78cf0c",
     "url": "/snake-game-blockchain/static/css/main.ece1fa49.chunk.css"
   },
   {
-    "revision": "4ab4d91dacd9a4089e6f",
-    "url": "/snake-game-blockchain/static/js/main.f299cb2f.chunk.js"
+    "revision": "ebbedb8852b9ff78cf0c",
+    "url": "/snake-game-blockchain/static/js/main.be29b055.chunk.js"
   },
   {
     "revision": "b244f285b76c68aaddac",
@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/snake-game-blockchain/static/media/king_cobra.5d95b8fb.png"
   },
   {
-    "revision": "ddb5306b0de495d8f81378a53c347ca3",
+    "revision": "a1d17adf17f9f4a84ab61ddb99f71d53",
     "url": "/snake-game-blockchain/index.html"
   }
 ];
