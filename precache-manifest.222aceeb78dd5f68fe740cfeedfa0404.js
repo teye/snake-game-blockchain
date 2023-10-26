@@ -32,7 +32,7 @@ self.__precacheManifest = [
     "url": "/snake-game-blockchain/static/media/king_cobra.5d95b8fb.png"
   },
   {
-    "revision": "bf96a5365597d2349afcd2e4f1c0f0eb",
+    "revision": "b377459d6e5523643553db4a87a08900",
     "url": "/snake-game-blockchain/index.html"
   }
 ];
